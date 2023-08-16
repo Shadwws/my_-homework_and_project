@@ -1,49 +1,50 @@
+/*
+Ejercicio 2:Conversión de temperaturas
+Martín Aburto
+Com 2 - 2023
+Programacion 1 - Ingenieria en computacion
+*/
+
+
 #include <stdio.h>
 
 float centigrados_a_fahrenheit(float centigrados)
 {
-    float resultado_fahrenheit=centigrados*1.8+32;
-    return(resultado_fahrenheit);
+    float resultadocentigrados = (centigrados*9/5)+32;
+    return resultadocentigrados;
 }
 
 float fahrenheit_a_centigrados(float fahrenheit)
 {
-    float resultado_centigrados=(fahrenheit-32)*5/9;
-    return(resultado_centigrados);
+    float resultadofahrenhrit = (fahrenheit-32)*5/9;
+    return resultadofahrenhrit;
 }
 
 int main()
 {
-	float resultado_centigrados;
-	float resultado_fahrenheit;
-	float fahrenheits;
-	float centigrados;
-	int variable;
-	printf("ingrese 0 para centigrados a fahrenheit \n");
-	printf("ingrese 1 para fahrenheit a centigrados \n");
-	scanf("%d \n", &variable);
+    float centigrados ;
+    float fahrenheit;
+    int election;
+    printf("ingrese 1 para centigrados a fahrenheit o 2 para fahrenheit a centigrados: ");
+    scanf("%d", &election);
 
-	if(variable==0)
-	{
-		printf("ingrese los centigrados a convertir: ");
-		scanf("%f" ,centigrados);
-		centigrados_a_fahrenheit(centigrados);
-		printf("%f", resultado_centigrados);
-	}
+    if (election==1)
+    {
+        printf("ingrese el valor en centigrados: ");
+        scanf("%f", &centigrados);
 
-	else if(variable==1)
-	{
-		printf("Ingrese valor a convertir");
-		scanf("%f", &fahrenheits);
-		fahrenheit_a_centigrados(fahrenheits);
-		printf("%f \n", resultado_fahrenheit);
+        float resultado_en_centigrados = centigrados_a_fahrenheit(centigrados);
+        printf("%f\n", resultado_en_centigrados);
+    }
 
-	}
+    else
+    {
+        printf("ingrese el valor en fahrenheit a convertir: ");
+        scanf("%f", &fahrenheit);
 
-	else
-	{
-		printf("valor erroneo");
-	}
-	return(0);
-
+        float resultado_fahrenheit = fahrenheit_a_centigrados(fahrenheit);
+        printf("%f\n", resultado_fahrenheit);
+    }
+    return(0);
 }
+
