@@ -1,136 +1,158 @@
 
-# TP3-2023
+# TP5-2023
 
-El objetivo de esta práctica es que comiencen a plantear sus primeras funciones en C.
+Matrices y estructuras.
 
 ## Forma de entrega
 
-* Cada punto debe ser entregado en un archivo independiente
-* El nombre de cada archivo debe ser `ejercicio` seguido 
-del número de ejercicios más `.c`, de esta manera, el primer ejercicio será entonces `ejercicio1.c`.
+* El nombre de cada archivo debe ser `ejercicio` seguido del número de ejercicios más `.c`, de esta manera, el primer ejercicio será entonces `ejercicio1.c`. Cuando el ejercicio contiene 'puntos', la idea es que sea un solo archivo.
 * Cada archivo debe seguir la estructura indicada dentro de `plantilla.c`, la cual debe estar completa con su nombre y usuario de GitHub. 
 * En ningún caso se aceptará el uso de variables globales. Toda la información necesaria para el funcionamiento de las funciones a desarrollar tienen que ser pasado como argumentos de las mismas.
-* Indiquen las precondiciones y poscondiciones de su algoritmo.
+* Indiquen las precondiciones y poscondiciones de sus funciones.
 * Mantengan separado lo que es entrada, del algoritmo y la salida.
 * Siempre que sea posible, los mensajes de confirmación de `git` deben ser descriptivos, evitando los que son como “cambios”.
 * Eviten _siempre que sea posible_ emplear la librería estándar de C.
 * No olviden documentar las funciones implementadas indicando el propósito de los argumentos y que es lo que retorna.
 
 ## Ejercicios
-Todos los ejercicios, a continuación, requieren la creación de un `main` que permita utilizar las funciones a implementar.
 
-### Punto 1: Arreglos
+### Ejercicio 1 - Enter the matrix
+Implementar funciones para operaciones con matrices de números enteros, en un solo archivo y en donde las funciones *pueden* retornar un valor ante los posibles errores que se encuentren.
 
-Empleen el valor de `return` como `int` para indicar potenciales fallos.
+[Mas información sobre las operaciones](https://www.matesfacil.com/matrices/resueltos-matrices-suma.html)
 
-#### 1.1 Cargador de arreglos
+#### Punto 1 - Mostrar una matriz
+Implementar una función que imprima por pantalla una matriz, incluyendo sus dimensiones.
 
-Desarrollar una función que dado un arreglo de números enteros, y la cantidad de elementos,  solicite valores por teclado para llenar las posiciones.
+#### Punto 2 - Multiplicación por un escalar. 
+El término **multiplicación escalar** se refiere al producto de un número real por una matriz. En la multiplicación escalar, cada entrada en la matriz se multiplica por el escalar dado.
+```C
+int producto_escalar(int filas, int columnas, int matriz[][], int escalar);
+```
+#### Punto 3 - Suma de matrices 
+La suma de matrices, es solo posible con matrices de las mismas dimensiones, esta operación requiere de un tercer argumento de matriz para almacenar el resultado.
+
+En la suma de matrices, se toma el elemento en la misma ubicación en ambas matrices y se suma, para cada uno de ellos.
 
 ```C
-int cargar_arreglo(int capacidad, int arreglo[]);
+int suma_matriz(int filas_1, int columnas_1, int matriz_1[][],
+								int filas_2, int columnas_2, int matriz_2[][],
+								int filas_r, int columnas_r, int resultado[][]);
 ```
-#### 1.2 Impresora de arreglos
 
-Desarrollar  una función que permita mostrar el contenido de un arreglo.
+### Ejercicio 2 - TATETI
+Implementar las funciones implementar el juego del Tateti en C. El juego debe permitir que dos jugadores jueguen alternativamente y determinar al ganador o si hay un empate.
+
+**Requisitos:**
+
+1.  El juego se juega en un tablero 3x3, donde los jugadores alternan para colocar sus fichas (uno usa "X" y el otro "O").
+2.  El juego debe imprimir el tablero después de cada movimiento y verificar si un jugador ha ganado o si hay un empate.
+3.  Debe haber una función para verificar el estado del juego después de cada movimiento y determinar si hay un ganador o si el juego ha terminado en empate.
+4.  El juego debe manejar errores, como ingresar una posición ya ocupada o un movimiento inválido.
+5.  El juego debe permitir que los jugadores ingresen sus movimientos en el formato "fila columna", por ejemplo, "1 2", pueden usar `scanf("%d %d", &fila, &columna);` que pide dos números separados por un espacio. 
+6.  El juego debe preguntar a los jugadores sus nombres al principio y utilizarlos en los mensajes de juego.
+7. *Separen lo más posible*, lo que hace funcionar al juego, de lo que interactúa con el usuario, los `printf`/`scanf`.
+
+**Ejemplo de flujo del juego:**
+```
+¡Bienvenido al juego del Tateti!
+Jugador 1, ingresa tu nombre: Juan
+Jugador 2, ingresa tu nombre: María
+
+Tablero inicial:
+ 1 | 2 | 3 
+-----------
+ 4 | 5 | 6 
+-----------
+ 7 | 8 | 9 
+
+Comienza el juego.
+
+Turno de Juan (X). Ingresa tu movimiento (fila columna): 1 1
+
+Tablero actualizado:
+ X | 2 | 3 
+-----------
+ 4 | 5 | 6 
+-----------
+ 7 | 8 | 9 
+
+Turno de María (O). Ingresa tu movimiento (fila columna): 2 2
+
+Tablero actualizado:
+ X | 2 | 3 
+-----------
+ 4 | O | 6 
+-----------
+ 7 | 8 | 9 
+
+...
+
+¡Felicidades, Juan (X)! ¡Has ganado!
+
+¿Quieren jugar otra partida? (S/N): N
+¡Gracias por jugar!
+```
+
+### Ejercicio 3 - Fracciones
+Desarrollar las funciones necesarias para operar con fracciones de números enteros.
+
 ```C
-int muestra_arreglo(int capacidad, int arreglo[]);
+typedef struct fraccion{
+    int numerador;
+    int denominador;
+} fraccion_t;
 ```
+Operaciones a implementar:
+ * Mostrar una fracción por consola.
+ * Suma entre fracciones
+ * Multiplicación entre fracciones
+ * Suma con un número entero.
+ 
+El `main` para este ejercicio debe utilizar todas estas operaciones.
 
-#### 1.3 Fusionadora de arreglos
-Desarrollar una función que permita unir dos arreglos en un tercero que tenga la capacidad suficiente.
+Este ejercicio no requiere de la utilización de punteros.
 
+### Ejercicio 4 - Gestionando el `tiempo_t`
+Desarrollar una estructura y funciones que permitan realizar las siguientes operaciones con 
+tiempo expresado en horas, minutos y segundos.
 
-#### 1.4 Operaciones con arreglos
+ * Crear `tiempo_t`
+ * Mostrar `tiempo_t`
+ * Sumar dos `tiempo_t`
+ * Comparar dos `tiempo_t`, indicando:
+	 * -1 si el primero es más chico
+	 * 0 si son iguales
+	 * 1 si el primero es más grande
 
-Implementar funciones que permitan hacer las siguientes operaciones sobre arreglos de números enteros.
+## Ejercicios adicionales
 
- * Promedio
- * Obtenga el valor mínimo
- * Obtenga la posición del valor máximo
- * Ordenar de menor a mayor
+Los ejercicios adicionales son completamente opcionales.
 
-### Punto 2. Cadenas seguras
+### Ejercicio 4 - División Lenta III
+Unificar las funciones de división lenta del TP1 de forma que la función retorne una 
+estructura representando los valores posibles. 
 
-Manipular un arreglo de manera segura es poder limitar la cantidad de posiciones que serán recorridas en el caso de que la cadena de caracteres no cuente con su carácter de terminación (`\0`).
+Mantengan separado lo que ‘entra’ de lo que sale; dividendo y divisor por un lado, cociente y resto por otro.
 
-* Las funciones a implementar no pueden usar las funciones de la librería.
-* Implementar las funciones indicadas a continuación en un único programa.
-* Implementar un programa que haga uso de estas funciones con datos ingresados por la consola.
+Crear las funciones de soporte necesarias como 'mostrar'
 
-Todas las funciones deben retornar códigos de error como números negativos para las situaciones que se puedan encontrar, como que la cadena de destino es más chica de lo que se necesita. Por ejemplo:
+### Ejercicio 5 - Arreglos II
+Reusando lo que ya tenemos sobre este tema, desarrollar una estructura y funciones de soporte para arreglos, en la que su capacidad y largo están en una estructura.
 
-```c
-#define CADENA_SIN_TERMINADOR -1
-```
+(Sí, la capacidad es fija, pero volveremos a este ejercicio en el TP siguiente en donde la capacidad puede variar).
 
-#### 2.1 Largo de cadenas
+Funcionalidad a implementar.
+* Cargar
+* Mostrar
+* Fusionar
+* Ordenar
 
-Implementar una función que cuente el largo de una cadena de texto de manera segura, La función debe retornar el largo de la cadena o el código de error correspondiente.
+### Cadenas Seguras III
+Seguimos reutilizando, desarrollar una estructura y las funciones de soporte para integrar la información de capacidad con las cadenas.
 
-Este prototipo es un ejemplo para el resto de las funciones a implementar.
-```C
-/**
- * La funcion cuenta los caracteres de la cadena sin exceder la capacidad del arreglo indicada.
- *  @param cadena es la direccion de la cadena con la que se contaran los caracteres
- *  @pre cadena es una cadena valida
- *  @param capacidad la capacidad es un número distinto a el largo de la cadena en si 
-                    y es el tamaño en memoria del arreglo
- *  @pre es un valor numerico entero positivo mayor a uno
- *  @returns un numero entero en donde los valores positivos incluyendo el cero representan la cantidad de caracteres
-         y los valores negativos, las siguientes situaciones de error:
-            CADENA_SIN_TERMINADOR cuando la cantidad de carateres sea por lo menos igual 
-                                  a la capacidad indicada por el argumento
- *  @post 
- */
-int largo_seguro(char cadena[], int capacidad);
-``` 
-#### 2.2 Copia de cadenas
-
-Implementar una función que copie una cadena en otra y deje solo un `\0` en la cadena destino
-
-La función debe retornar el largo de la cadena destino o el código de error correspondiente.
-
-#### 2.3 Inserción de cadenas
-
-Implementar una función que inserte una cadena en otra luego de la posición indicada de manera segura.
-
-Que hacer cuando la cadena destino no tiene la capacidad necesaria para alojar la cadena a insertar es
-su decisión, la cual debe quedar registrada en el comentario de la función.
-
-**Ejemplo**
-
-Insertar "HOLA" en "Mundo" en la posición 2 daría como resultado "MunHOLAdo"
-
-La función debe retornar el largo de la cadena destino o el código de error correspondiente.
-
-#### 2.4 Limpieza
-
-Implementar una función que limpie la cadena de todos los caracteres que no sean los alfanuméricos (`AZaz09`) menos el `\0` en una cadena diferente a la de entrada.
-
-La función debe retornar el largo de la cadena destino o el código de error correspondiente.
-
-#### 2.5 Comparación
-
-Implementar una función que indique el ordenamiento alfabético de dos cadenas (solo minúsculas)
-
-* -1 la primera cadena va antes de que las segunda
-* 0 ambas cadenas son iguales
-* 1 la primera cadena va después que la segunda.
-
-#### 2.6 A minúsculas y a mayúsculas
-
-Implementar una función que modifique la cadena dejando todos sus caracteres en minúsculas.
-
-#### 2.7 Palíndromo seguro
-
-Implementar una función que indique con TRUE si la cadena es un palíndromo, con FALSE si no lo es o indicar un error si no posee `\0`.
-
-Una palabra es palíndromo cuando se puede leer de la misma manera en ambas direcciones.
-
-Ignoren mayúsculas y minúsculas.
-
-Neuquen -> es palíndromo
-
-***Opcionalmente***, pueden agregar un argumento para las opciones de la función, como ignorar
-Mayúsculas/minúsculas o símbolos.
+Funcionalidad a implementar.
+* Largo
+* Mostrar (el `%s` no funciona más)
+* Insertar en una posición
+* Copiar una cadena en otra.
