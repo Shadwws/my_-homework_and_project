@@ -33,7 +33,7 @@ fraccion_t suma_fracciones (fraccion_t fraccion1, fraccion_t fraccion2, fraccion
     
     return resultado;
 }
-fraccion_t multiplicacion_fracciones(fraccion_t fraccion1, fraccion_t fraccion2, fraccion_t resultado);
+fraccion_t multiplicacion_fracciones(fraccion_t fraccion1, fraccion_t fraccion2, fraccion_t resultado)
 {
     int min;
     resultado.numerador=fraccion1.numerador*fraccion2.numerador;
@@ -81,17 +81,17 @@ int main()
     printf("Ingresé la segunda fracción, separando el numerador y denominador por un espacio: ");
     scanf("%d %d", &fraccion2.numerador, &fraccion2.denominador);
     
-    printf("Fracción 1");
+    printf("Fracción 1: ");
     mostrar_fraccion(fraccion1);
     
-    printf("Fracción 2");
+    printf("Fracción 2: ");
     mostrar_fraccion(fraccion2);
     
-    printf("Suma de las fracciones");
+    printf("Suma de las fracciones: ");
     resultado=suma_fracciones(fraccion1, fraccion2, resultado);
     mostrar_fraccion(resultado);
     
-    printf("Multiplicacion de las fracciones");
+    printf("Multiplicacion de las fracciones: ");
     resultado=multiplicacion_fracciones(fraccion1, fraccion2, resultado);
     mostrar_fraccion(resultado);
 }
