@@ -33,12 +33,18 @@ void mostrar_fraccion(fraccion_t fraccion1, fraccion_t fraccion2)
     }
 }
 
-int suma_fracciones ();
-
+int suma_fracciones (fraccion_t fraccion1, fraccion_t fraccion2, fraccion_t resultado_fraccion)
+{
+    int min)
+    resultado.numerador=(fraccion1.numerador*fraccion2.denominador)+(fraccion2.numerador*fraccion1.denominador);
+    resultado.denominador=fraccion1.denominador*fraccion2.denominador;
+    min= mcd(resultado);
+}
 int multiplicacion_fracciones();
 
 int suma_entero();
 
+int mcd(fraccion_t fraccion);
 
 int main()
 {
