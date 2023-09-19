@@ -1,3 +1,10 @@
+/*
+Ejercicio 1: Enter the matrix
+Martín Aburto
+Com 2 - 2023
+Programacion 1 - Ingenieria en computacion
+*/
+
 #include <stdio.h>
 
 #define zize 256
