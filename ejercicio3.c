@@ -16,7 +16,7 @@ typedef struct fraccion {
 
 void mostrar_fraccion(fraccion_t fraccion1)
 {
-    printf("%d %d \n\n", fraccion1.numerador, fraccion1.denominador);
+    printf("%d/%d \n\n", fraccion1.numerador, fraccion1.denominador);
 }
 
 
@@ -46,7 +46,12 @@ fraccion_t multiplicacion_fracciones(fraccion_t fraccion1, fraccion_t fraccion2,
     return resultado;
 }
 
-int suma_entero();
+fraccion_t suma_entero(fraccion_t fraccion, fraccion_t entero, fraccion_t resultado)
+{
+    resultado=suma_fracciones(fraccion, entero, resultado);
+
+    return resultado;
+}
 
 int mcd(fraccion_t fraccion)
 {
@@ -91,26 +96,63 @@ int mcd(fraccion_t fraccion)
 
 int main()
 {
+    int i=1;
+    int funcion;
     fraccion_t resultado;
     fraccion_t fraccion1, fraccion2;
-    printf("Ingrese la primera fraccion, separando el numerador y denominador por un espacio: ");
-    scanf("%d %d", &fraccion1.numerador, &fraccion1.denominador);
+    
 
+    while(i!=0)
+    {
+        printf("Ingrese la primera fraccion, separando el numerador y denominador por un espacio: ");
+        scanf("%d %d", &fraccion1.numerador, &fraccion1.denominador);
 
-    printf("Ingresé la segunda fracción, separando el numerador y denominador por un espacio: ");
-    scanf("%d %d", &fraccion2.numerador, &fraccion2.denominador);
+        printf("\n1-Mostrar fracciones\n2-Sumar fracciones\n3-Multiplicar fracciones\n4-Sumar fraccion con numero entero\n0-Para salir\n\nIngrese: ");
+        scanf("%d", &funcion);
+        
+        if(funcion==1)
+        {
+            printf("Fraccion 1: ");
+            mostrar_fraccion(fraccion1);
 
-    printf("Fracción 1: ");
-    mostrar_fraccion(fraccion1);
+        }
 
-    printf("Fracción 2: ");
-    mostrar_fraccion(fraccion2);
+        else if(funcion==2)
+        {
+            printf("Ingrese la segunda fraccion, separando el numerador y denominador por un espacio: ");
+            scanf("%d %d", &fraccion2.numerador, &fraccion2.denominador);
+            printf("Suma de las fracciones: ");
+            resultado=suma_fracciones(fraccion1, fraccion2, resultado);
+            mostrar_fraccion(resultado);
+        }
+        else if(funcion==3)
+        {
+            printf("Ingrese la segunda fraccion, separando el numerador y denominador por un espacio: ");
+            scanf("%d %d", &fraccion2.numerador, &fraccion2.denominador);
+            printf("Multiplicacion de las fracciones: ");
+            resultado=multiplicacion_fracciones(fraccion1, fraccion2, resultado);
+            mostrar_fraccion(resultado);
+        }
+        else if (funcion==4)
+        {
+            printf("Ingrese el numero entero a sumar: ");
+            scanf("%d", &fraccion2.numerador);
+            fraccion2.denominador=1;
+            resultado=suma_entero(fraccion1, fraccion2, resultado);
+            printf("El resultado es: ");
+            mostrar_fraccion(resultado);
+        }
+        else if(funcion==0)
+        {
+            i=0;
+            printf("\n\nGracias por usar el programa");            
+        }
+        
 
-    printf("Suma de las fracciones: ");
-    resultado=suma_fracciones(fraccion1, fraccion2, resultado);
-    mostrar_fraccion(resultado);
-
-    printf("Multiplicacion de las fracciones: ");
-    resultado=multiplicacion_fracciones(fraccion1, fraccion2, resultado);
-    mostrar_fraccion(resultado);
+        else
+        {
+            printf("Valor invalido, por favor intente de nuevo");
+        }
+    }
+    return 0;
 }
