@@ -75,27 +75,34 @@ tiempo_t sumar_tiempos(tiempo_t time1, tiempo_t time2)
 int comparar_tiempos(tiempo_t time1, tiempo_t time2)
 {
     int que_es;
-    if (time1.horas<time2.horas)
+    
+    if(time1.segundos==time2.segundos && time1.minutos==time2.minutos && time1.horas==time2.horas)
+    {
+        que_es=igual;
+    }
+    else if(time1.horas>time2.horas)
+    {
+        que_es=mas_grande;
+    }
+    else if(time1.horas<time2.horas)
     {
         que_es=mas_chico;
     }
-
+    else if(time1.minutos>time2.minutos)
+    {
+        que_es=mas_grande;
+    }
     else if(time1.minutos<time2.minutos)
     {
         que_es=mas_chico;
     }
-    else if(time1.segundos<time2.segundos)
-    {
-        
-        que_es=mas_chico;
-    }
-    else if(time1.segundos==time2.segundos && time1.minutos==time2.minutos && time1.horas==time2.horas)
-    {
-        que_es=igual;
-    }
-    else
+    else if(time1.segundos>time2.segundos)
     {
         que_es=mas_grande;
+    }
+    else if(time1.segundos<time2.segundos)
+    {
+        que_es=mas_chico;
     }
 
     printf("%d", que_es);
@@ -107,7 +114,7 @@ int main()
     tiempo_t time1;
     tiempo_t time2;
     tiempo_t suma_time;
-    int compara=0;
+    int compara;
 
     time1=cargar_tiempo(time1);
     time2=cargar_tiempo(time2);
@@ -118,4 +125,6 @@ int main()
     suma_time=sumar_tiempos(time1, time2);
     mostrar_tiempo(suma_time);
     compara=comparar_tiempos(time1, time2);
+    
+    return 0;
 }

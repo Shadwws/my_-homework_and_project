@@ -14,45 +14,23 @@ typedef struct fraccion {
     int denominador;
 } fraccion_t;
 
+/*
+*La funcion mostrar_fraccion muestra una fraccion
+*@param fraccion1 es una estructura compuesta por
+        numerador y denominador
+*@pre 2 numeros de tipo enteros
+*/
+
+
 void mostrar_fraccion(fraccion_t fraccion1)
 {
     printf("%d/%d \n\n", fraccion1.numerador, fraccion1.denominador);
 }
 
+/*
+*la funcion mcd saca el maximo comun divisor de una fraccion
 
-int mcd(fraccion_t fraccion);
-
-fraccion_t suma_fracciones (fraccion_t fraccion1, fraccion_t fraccion2, fraccion_t resultado)
-{
-    int min;
-    resultado.numerador=(fraccion1.numerador*fraccion2.denominador)+(fraccion2.numerador*fraccion1.denominador);
-    resultado.denominador=fraccion1.denominador*fraccion2.denominador;
-    min= mcd(resultado);
-    resultado.numerador=resultado.numerador/min;
-    resultado.denominador=resultado.denominador/min;
-
-    return resultado;
-}
-fraccion_t multiplicacion_fracciones(fraccion_t fraccion1, fraccion_t fraccion2, fraccion_t resultado)
-{
-    int min;
-    resultado.numerador=fraccion1.numerador*fraccion2.numerador;
-    resultado.denominador=fraccion1.denominador*fraccion2.denominador;
-    min=mcd(resultado);
-
-    resultado.numerador=resultado.numerador/min;
-    resultado.denominador=resultado.denominador/min;
-
-    return resultado;
-}
-
-fraccion_t suma_entero(fraccion_t fraccion, fraccion_t entero, fraccion_t resultado)
-{
-    resultado=suma_fracciones(fraccion, entero, resultado);
-
-    return resultado;
-}
-
+*/
 int mcd(fraccion_t fraccion)
 {
     int i=1;
@@ -93,6 +71,39 @@ int mcd(fraccion_t fraccion)
 
     return j;
 }
+
+fraccion_t suma_fracciones (fraccion_t fraccion1, fraccion_t fraccion2, fraccion_t resultado)
+{
+    int min;
+    resultado.numerador=(fraccion1.numerador*fraccion2.denominador)+(fraccion2.numerador*fraccion1.denominador);
+    resultado.denominador=fraccion1.denominador*fraccion2.denominador;
+    min= mcd(resultado);
+    resultado.numerador=resultado.numerador/min;
+    resultado.denominador=resultado.denominador/min;
+
+    return resultado;
+}
+fraccion_t multiplicacion_fracciones(fraccion_t fraccion1, fraccion_t fraccion2, fraccion_t resultado)
+{
+    int min;
+    resultado.numerador=fraccion1.numerador*fraccion2.numerador;
+    resultado.denominador=fraccion1.denominador*fraccion2.denominador;
+    min=mcd(resultado);
+
+    resultado.numerador=resultado.numerador/min;
+    resultado.denominador=resultado.denominador/min;
+
+    return resultado;
+}
+
+fraccion_t suma_entero(fraccion_t fraccion, fraccion_t entero, fraccion_t resultado)
+{
+    resultado=suma_fracciones(fraccion, entero, resultado);
+
+    return resultado;
+}
+
+
 
 int main()
 {

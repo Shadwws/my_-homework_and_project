@@ -8,6 +8,17 @@ Programacion 1 - Ingenieria en computacion
 #include <stdio.h>
 
 #define zize 256
+/*
+*La funcion mostrar_matriz muestra los valores dentro
+    de una matriz
+*@param filas: Es la cantidad de filas de la matriz
+*@pre Filas: Es un valor numerico mayor a 1
+*@param Columnas: Es la cantidad de columnas de la matriz
+*pre Columnas: Es un valor numerico mayor a 1
+*@param Matriz: Es la matriz que se desea mostrar
+*@pre una matriz valida
+*/
+
 
 void mostrar_matriz(int filas, int columnas, int matriz[zize][zize])
 {
@@ -22,6 +33,16 @@ void mostrar_matriz(int filas, int columnas, int matriz[zize][zize])
     printf("\n");
 }
 
+
+/*
+*La funcion carga_matriz asigna valores a las matrices
+*@param filas: Es la cantidad de filas de la matriz
+*@pre Filas: Es un valor numerico mayor a 1
+*@param Columnas: Es la cantidad de columnas de la matriz
+*pre Columnas: Es un valor numerico mayor a 1
+*@param Matriz: Es la matriz donde se almacenaran
+*@pre una matriz valida
+*/
 void carga_matriz(int fila, int columna, int matriz[zize][zize])
 {
     for(int i=0;i<fila;i++)
@@ -32,8 +53,23 @@ void carga_matriz(int fila, int columna, int matriz[zize][zize])
             scanf("%d", &matriz [i][j]);
         }
     }
+
 }
 
+
+/*
+*La funcion carga_matriz asigna valores a las matrices
+*@param filas: Es la cantidad de filas de la matriz
+*@pre Filas: Es un valor numerico mayor a 1
+*@param Columnas: Es la cantidad de columnas de la matriz
+*pre Columnas: Es un valor numerico mayor a 1
+*@param Matriz: Es la matriz inicial
+*@pre una matriz valida
+*@param escalar: Es el valor numero a multiplicar la matriz
+*@pre escalar es un numero entero
+*@return la matriz ingresada multiplicada por el escalar
+*@post la matriz modificada con los valores multiplicados
+*/
 int producto_escalar(int filas, int columnas, int matriz[zize][zize], int escalar)
 {
     int i;
@@ -47,6 +83,28 @@ int producto_escalar(int filas, int columnas, int matriz[zize][zize], int escala
     }
     return matriz[zize][zize];
 }
+
+/*
+*La funcion suma_matriz calcula la suma de 2 matrices
+*@param filas: los valores filas es la cantidad de filas
+            de las matrices
+*@pre Filas: Es un valor numerico mayor a 1
+*@param Columnas: los valores filas es la cantidad de columnas
+            de las matrices
+*pre Columnas: Es un valor numerico mayor a 1
+*@param Matriz_1: Es la matriz inicial
+*@pre una matriz valida
+*@param matriz_2: Es la matriz a sumar
+*@pre una matriz valida
+*@param resultado: Es una matriz donde se guardara la suma
+            las matrices
+*@pre una matriz valida
+
+*@return una matriz con el resultado de la suma de 
+            2 matrices
+*@post la matriz "resultado" modificada con la suma de
+            "matriz1" y "matriz2"
+*/
 
 int suma_matriz(int filas_1, int columnas_1, int matriz_1[zize][zize],
 								int filas_2, int columnas_2, int matriz_2[zize][zize],
@@ -122,15 +180,22 @@ int main()
     int resultado_matriz [zize][zize];
     int fila_r=fila1;
     int columna_r=columna1;
-
-    resultado_matriz[zize][zize]=suma_matriz(fila1, columna1, matriz1, fila2, columna2, matriz2, fila_r, columna_r, resultado_matriz);
-
     printf ("matriz 1 \n");
     mostrar_matriz(fila1, columna1, matriz1);
     printf ("matriz 2 \n");
     mostrar_matriz(fila2, columna2, matriz2);
-    printf ("suma de matrices 1 \n");
-    mostrar_matriz(fila_r, columna_r, resultado_matriz);     
+
+    if (columna1==columna2 && fila1==fila2)
+    {
+        resultado_matriz[zize][zize]=suma_matriz(fila1, columna1, matriz1, fila2, columna2, matriz2, fila_r, columna_r, resultado_matriz);
+        printf ("suma de matrices 1 \n");
+        mostrar_matriz(fila_r, columna_r, resultado_matriz);     
+    }
+    else{
+        printf("La suma no se realizo porque los valores filas y columnas no son iguales");
+    }
+    
+    
     
     return 0;
 }
