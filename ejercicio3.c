@@ -8,11 +8,11 @@ Programacion 1 - Ingenieria en computacion
 #include <stdio.h>
 
 
-
+//estructura de las fracciones
 typedef struct fraccion {
-    int numerador;
-    int denominador;
-} fraccion_t;
+    int numerador;//este es el numerador de la fraccion
+    int denominador;//este es el denominador de la fraccion
+} fraccion_t;//La forma en la que se abrevia el llamado a la estructura
 
 /*
 *La funcion mostrar_fraccion muestra una fraccion
@@ -29,7 +29,11 @@ void mostrar_fraccion(fraccion_t fraccion1)
 
 /*
 *la funcion mcd saca el maximo comun divisor de una fraccion
-
+*@param fraccion1 es una estructura compuesta por
+        numerador y denominador
+*@pre 2 numeros de tipo enteros
+*@return numero divisible por la fraccion
+*@post numero entero
 */
 int mcd(fraccion_t fraccion)
 {
@@ -72,8 +76,20 @@ int mcd(fraccion_t fraccion)
     return j;
 }
 
-fraccion_t suma_fracciones (fraccion_t fraccion1, fraccion_t fraccion2, fraccion_t resultado)
+/*
+*la funcion suma_fracciones calcula suma de 2 fracciones y mediante
+        mcd simplifica la fraccion en caso que se pueda
+*@param fraccion1 es la fraccion inicial
+*@pre una fraccion compuesta por 2 numeros de tipo enteros
+*@param fraccion2 es la fraccion a sumar
+*@pre una fraccion compuesta por 2 numeros enteros
+*@return es el resultado de la suma de ambas fracciones
+        ingresadas
+*@post una fraccion de numeros enteros
+*/
+fraccion_t suma_fracciones (fraccion_t fraccion1, fraccion_t fraccion2)
 {
+    fraccion_t resultado;
     int min;
     resultado.numerador=(fraccion1.numerador*fraccion2.denominador)+(fraccion2.numerador*fraccion1.denominador);
     resultado.denominador=fraccion1.denominador*fraccion2.denominador;
@@ -83,6 +99,39 @@ fraccion_t suma_fracciones (fraccion_t fraccion1, fraccion_t fraccion2, fraccion
 
     return resultado;
 }
+
+/*
+*la funcion suma_entero permite hacer la suma de una fraccion
+        con un numero entero
+*@param fraccion es la fraccion inicial
+*@pre una fraccion compuesta por 2 numeros de tipo enteros
+*@param entero es el numero a sumar
+*@pre numero entero
+*@return es el resultado de la suma de la fraccion
+        ingresada y el numero entero
+*@post una fraccion de numeros enteros
+*/
+
+fraccion_t suma_entero(fraccion_t fraccion, fraccion_t entero, fraccion_t resultado)
+{
+    resultado=suma_fracciones(fraccion, entero);
+
+    return resultado;
+}
+
+/*
+*la funcion multiplicacion_fracciones permite multiplicar
+        2 fracciones en
+*@param fraccion1 es la fraccion inicial
+*@pre una fraccion compuesta por 2 numeros de tipo enteros
+*@param fraccion2 es la fraccion a multiplicar
+*@pre una fraccion compuesta por 2 numeros enteros
+*@return es el resultado de la multiplicacion de ambas fracciones
+        ingresadas
+*@post una fraccion de numeros enteros
+*/
+
+
 fraccion_t multiplicacion_fracciones(fraccion_t fraccion1, fraccion_t fraccion2, fraccion_t resultado)
 {
     int min;
@@ -96,12 +145,6 @@ fraccion_t multiplicacion_fracciones(fraccion_t fraccion1, fraccion_t fraccion2,
     return resultado;
 }
 
-fraccion_t suma_entero(fraccion_t fraccion, fraccion_t entero, fraccion_t resultado)
-{
-    resultado=suma_fracciones(fraccion, entero, resultado);
-
-    return resultado;
-}
 
 
 
@@ -133,7 +176,7 @@ int main()
             printf("Ingrese la segunda fraccion, separando el numerador y denominador por un espacio: ");
             scanf("%d %d", &fraccion2.numerador, &fraccion2.denominador);
             printf("Suma de las fracciones: ");
-            resultado=suma_fracciones(fraccion1, fraccion2, resultado);
+            resultado=suma_fracciones(fraccion1, fraccion2);
             mostrar_fraccion(resultado);
         }
         else if(funcion==3)

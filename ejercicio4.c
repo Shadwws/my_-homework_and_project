@@ -9,13 +9,22 @@ Programacion 1 - Ingenieria en computacion
 #define igual 0
 #define mas_grande 1
 
-
+//estructura de tiempo
 typedef struct tiempo
 {
-    int horas;
-    int minutos;
-    int segundos;
-}tiempo_t;
+    int horas;//es el valor de las horas del tiempo
+    int minutos;//es el valor de las minutos del tiempo
+    int segundos;//es el valor de las segundos del tiempo
+}tiempo_t;//La forma en la que se abrevia el llamado a la estructura
+
+/*
+*La funcion cargar_tiempo permite ingresar los valores del 
+        tiempo 
+*@param time es donde se guardara los valores ingresados
+*@pre una estructura de numeros enteros valida
+*@return la estructura ingresada con los valores ingresados
+*@post una estructura d numeros enteros
+*/
 
 tiempo_t cargar_tiempo(tiempo_t time)
 {
@@ -45,10 +54,30 @@ tiempo_t cargar_tiempo(tiempo_t time)
     return time;
 }
 
+/*
+*La funcion mostrar_tiempo permite mostrar los valores de
+        una estructura de tiempo
+*@param time es el tiempo a mostrar
+*@pre una estructura de numeros enteros valida
+*/
+
 void mostrar_tiempo(tiempo_t time)
 {
     printf("su tiempo es %d horas con %d minutos y %d segundos.\n\n", time.horas, time.minutos, time.segundos);
 }
+
+/*
+*La funcion suma_tiempo permite sumar 2 estructuras de tiempos
+        en una nueva
+*@param time1 es el tiempo incial
+*@pre una estructura de numeros enteros valida
+*@param time1 es el tiempo a sumar
+*@pre una estructura de numeros enteros valida
+*@return una estructura de tiempo llamada "resultado_tiempos"
+        que contiene la suma de ambos tiempos
+*@pos una estructura de tiempos con los valores de la sumas
+*/
+
 tiempo_t sumar_tiempos(tiempo_t time1, tiempo_t time2)
 {
     int min;
@@ -72,6 +101,18 @@ tiempo_t sumar_tiempos(tiempo_t time1, tiempo_t time2)
     return resultado_tiempo;
     
 }
+
+/*
+*La funcion comparar_tiempos permite comparar 2 estructuras de tiempo
+        para determinar cual es mas grande
+*@param time1 es una estructura de tiempo
+*@pre una estructura de numeros enteros valida
+*@param time1 es una estructura de tiempo
+*@pre una estructura de numeros enteros valida
+*@return un valor numerico que determina si es mas chica la primera o no
+*@pos un valor numerico igual o mayor a -1 y menor o igual a 1 
+*/
+
 int comparar_tiempos(tiempo_t time1, tiempo_t time2)
 {
     int que_es;
